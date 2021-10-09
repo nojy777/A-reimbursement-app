@@ -1,6 +1,5 @@
 package com.enyawevia.servlet;
 
-import com.enyawevia.model.User;
 import com.enyawevia.service.UserService;
 
 import javax.servlet.ServletException;
@@ -10,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-public class RegistrationServlet extends HttpServlet {
+public class LoginServlet extends HttpServlet {
 
     UserService userSvc = new UserService();
 
@@ -18,25 +17,17 @@ public class RegistrationServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         PrintWriter pw = resp.getWriter();
 
-        // collect data from request
-
-        String firstName = req.getParameter("firstName");
-        String lastName = req.getParameter("lastName");
         String email = req.getParameter("email");
-        String password =  req.getParameter("password");
-        String role = req.getParameter("role");
+        String password = req.getParameter("password");
 
+        boolean res = userSvc.login(email, password);
+        if(res) {
+            pw.write("Login Successful");
 
-        User user = new  User(firstName,lastName,email,password,role);
+        } else {
+            pw.write("Login Failed");
 
-        // insert into the user
-       String res= userSvc.registerUser(user);
-
-        pw.write(res);
-
-
-
-
+        }
 
     }
 }
