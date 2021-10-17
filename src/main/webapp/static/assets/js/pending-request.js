@@ -30,6 +30,9 @@ function getPendingRequest() {
                         td.innerHTML = sn;
 
                         for(key in respObj.data[i]) {
+                            if(key === 'id') {
+                                continue
+                            }
                             let td = tr.appendChild(document.createElement('td'));
                             td.title = key;
                             if(key === 'amount') {

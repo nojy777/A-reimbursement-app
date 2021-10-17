@@ -17,6 +17,13 @@ public class UserService {
     public BaseResponse registerUser(User user) {
 
         BaseResponse baseResponse = new BaseResponse();
+
+        // validate user input
+        if(user.getFirstName() ==""|| user.getEmail()== ""|| user.getPassword() == "" || user.getRole() == "") {
+            baseResponse.setStatus((false));
+            baseResponse.setMessage("Please fill in all the fields in the form");
+            return baseResponse;
+        }
         String sql = "INSERT INTO users (first_name, last_name, email, password, role) VALUES (?,?,?,?,?)";
 
         try {
@@ -64,6 +71,14 @@ public class UserService {
     public BaseResponse login(String email, String password) {
 
         BaseResponse baseResponse = new BaseResponse();
+
+        // validate user input
+        if(email ==""|| password== "") {
+            baseResponse.setStatus((false));
+            baseResponse.setMessage("Please fill in all the fields in the form");
+            return baseResponse;
+        }
+
         String sql = "SELECT * FROM users WHERE email = ? AND password = ?";
 
         try {

@@ -28,11 +28,12 @@ function getPendingRequest() {
                         td.innerHTML = sn;
 
                         for(key in respObj.data[i]) {
-                            let td = tr.appendChild(document.createElement('td'));
-                            td.title = key;
                             if(key == 'id') {
                                 continue;
                             }
+                            let td = tr.appendChild(document.createElement('td'));
+                            td.title = key;
+
                             if(key === 'amount') {
                                 td.innerHTML = '$ ' + (respObj.data[i][key]).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'); ;
                             } else {

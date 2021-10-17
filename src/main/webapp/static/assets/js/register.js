@@ -25,6 +25,7 @@ function attemptRegister() {
             if(respObj.status) {
                  successDiv.hidden = false;
                  successDiv.innerText = respObj.message;
+                 document.getElementById("register-form").reset();
             } else {
                 errorDiv.hidden = false;
                 errorDiv.innerText = respObj.message;

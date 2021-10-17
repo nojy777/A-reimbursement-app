@@ -32,6 +32,7 @@ function attemptCreate() {
             if(respObj.status) {
                  successDiv.hidden = false;
                  successDiv.innerText = respObj.message;
+                 document.getElementById('create-request-form').reset();
             } else {
                 errorDiv.hidden = false;
                 errorDiv.innerText = respObj.message;
