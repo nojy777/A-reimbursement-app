@@ -47,7 +47,6 @@ public class UserService {
             ps.setString(3, user.getEmail());
             ps.setString(4, user.getPassword());
             ps.setString(5, user.getRole());
-
             int resp = ps.executeUpdate();
 
             if(resp == 1) {
